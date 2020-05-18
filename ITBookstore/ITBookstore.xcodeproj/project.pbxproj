@@ -15,6 +15,9 @@
 		276FDE99247343150090121B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 276FDE97247343150090121B /* LaunchScreen.storyboard */; };
 		276FDEA4247343160090121B /* ITBookstoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276FDEA3247343160090121B /* ITBookstoreTests.swift */; };
 		276FDEAF247343160090121B /* ITBookstoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276FDEAE247343160090121B /* ITBookstoreUITests.swift */; };
+		276FDEBF247344FD0090121B /* BookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276FDEBE247344FD0090121B /* BookService.swift */; };
+		276FDEC2247345DE0090121B /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276FDEC1247345DE0090121B /* Book.swift */; };
+		276FDEC52473500A0090121B /* BooksTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276FDEC42473500A0090121B /* BooksTableViewDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		276FDEAA247343160090121B /* ITBookstoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ITBookstoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		276FDEAE247343160090121B /* ITBookstoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITBookstoreUITests.swift; sourceTree = "<group>"; };
 		276FDEB0247343160090121B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		276FDEBE247344FD0090121B /* BookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookService.swift; sourceTree = "<group>"; };
+		276FDEC1247345DE0090121B /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		276FDEC42473500A0090121B /* BooksTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksTableViewDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,9 @@
 			children = (
 				276FDE8C247343150090121B /* AppDelegate.swift */,
 				276FDE8E247343150090121B /* SceneDelegate.swift */,
+				276FDEC0247345C80090121B /* Entities */,
+				276FDEBD247344EC0090121B /* Services */,
+				276FDEC324734FEF0090121B /* UITableViewDataSources */,
 				276FDEBC247343B30090121B /* ViewControllers */,
 				276FDE92247343150090121B /* Main.storyboard */,
 				276FDE95247343150090121B /* Assets.xcassets */,
@@ -134,6 +143,30 @@
 				276FDE90247343150090121B /* BooksViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		276FDEBD247344EC0090121B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				276FDEBE247344FD0090121B /* BookService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		276FDEC0247345C80090121B /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				276FDEC1247345DE0090121B /* Book.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		276FDEC324734FEF0090121B /* UITableViewDataSources */ = {
+			isa = PBXGroup;
+			children = (
+				276FDEC42473500A0090121B /* BooksTableViewDataSource.swift */,
+			);
+			path = UITableViewDataSources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,8 +300,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				276FDEBF247344FD0090121B /* BookService.swift in Sources */,
 				276FDE91247343150090121B /* BooksViewController.swift in Sources */,
 				276FDE8D247343150090121B /* AppDelegate.swift in Sources */,
+				276FDEC52473500A0090121B /* BooksTableViewDataSource.swift in Sources */,
+				276FDEC2247345DE0090121B /* Book.swift in Sources */,
 				276FDE8F247343150090121B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
