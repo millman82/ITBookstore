@@ -8,10 +8,16 @@
 
 import Foundation
 
-public struct Book: Decodable {
+public class Book: Decodable {
     let title: String
     let subtitle: String
+    var authors: String?
+    var publisher: String?
     let isbn13: String
+    var pages: String?
+    var year: String?
+    var rating: String?
+    var desc: String?
     let price: String
     let image: String
     let url: String

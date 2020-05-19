@@ -19,6 +19,7 @@
 		276FDEC2247345DE0090121B /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276FDEC1247345DE0090121B /* Book.swift */; };
 		276FDEC52473500A0090121B /* BooksTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276FDEC42473500A0090121B /* BooksTableViewDataSource.swift */; };
 		276FDEC8247376EA0090121B /* BookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276FDEC7247376EA0090121B /* BookManager.swift */; };
+		276FDECA247384540090121B /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276FDEC9247384540090121B /* BookDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		276FDEC1247345DE0090121B /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		276FDEC42473500A0090121B /* BooksTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksTableViewDataSource.swift; sourceTree = "<group>"; };
 		276FDEC7247376EA0090121B /* BookManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookManager.swift; sourceTree = "<group>"; };
+		276FDEC9247384540090121B /* BookDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				276FDE90247343150090121B /* BooksViewController.swift */,
+				276FDEC9247384540090121B /* BookDetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				276FDEC52473500A0090121B /* BooksTableViewDataSource.swift in Sources */,
 				276FDEC8247376EA0090121B /* BookManager.swift in Sources */,
 				276FDEC2247345DE0090121B /* Book.swift in Sources */,
+				276FDECA247384540090121B /* BookDetailViewController.swift in Sources */,
 				276FDE8F247343150090121B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

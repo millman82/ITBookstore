@@ -28,10 +28,26 @@ class BooksViewController: UITableViewController {
         })
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "showBookDetail":
+            if let selectedIndexPath = tableView.indexPathForSelectedRow,
+                let destinationVC = segue.destination as? BookDetailViewController {
+                
+                let book = dataSource.books[selectedIndexPath.row]
+                destinationVC.bookManager = bookManager
+                destinationVC.book = book
+            }
+        default:
+            preconditionFailure("Unexpected segue identifier.")
+        }
+    }
+    
+    // MARK: UITableViewDelegate
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let book = self.dataSource.books[indexPath.row]
         
-        bookManager?.loadImage(book: book, completion: { (image) in
+        bookManager?.loadImage(for: book, completion: { (image) in
             cell.imageView?.image = image
         })
     }
