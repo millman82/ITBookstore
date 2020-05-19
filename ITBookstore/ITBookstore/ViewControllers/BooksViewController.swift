@@ -9,9 +9,9 @@
 import UIKit
 
 class BooksViewController: UITableViewController {
-    var bookService: BookService?
+    var bookManager: BookManager?
     
-    private var dataSource = BooksTableViewDataSource()
+    private let dataSource = BooksTableViewDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,18 +22,17 @@ class BooksViewController: UITableViewController {
     }
     
     private func load() {
-        bookService?.searchBooks(for: "swift", completion: { (result) in
-            switch result {
-            case let .success(books):
-                self.dataSource.books = books
-            case let .failure(error):
-                print(error)
-                self.dataSource.books = []
-            }
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+        bookManager?.loadBooks(completion: { (books) in
+            self.dataSource.books = books
+            self.tableView.reloadSections(IndexSet(integer: 0), with: .none)
+        })
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let book = self.dataSource.books[indexPath.row]
+        
+        bookManager?.loadImage(book: book, completion: { (image) in
+            cell.imageView?.image = image
         })
     }
 
