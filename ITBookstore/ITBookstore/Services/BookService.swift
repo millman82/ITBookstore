@@ -6,17 +6,19 @@
 //  Copyright © 2020 Timothy Miller. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public enum BookServiceError: Error {
+    case imageRequestFailed
     case invalidJSONData
+    case invalidImageData
     case requestFailed
 }
 
 public struct BookService {
     private let rootUrl = "https://api.itbook.store/1.0"
     
-    func searchBooks(for query: String, completion: @escaping (Result<[Book], BookServiceError>) -> Void) {
+    public func searchBooks(for query: String, completion: @escaping (Result<[Book], BookServiceError>) -> Void) {
         let searchPath = "/search/\(query)"
         
         guard let queryURL = URL(string: "\(rootUrl)\(searchPath)") else {
@@ -24,7 +26,7 @@ public struct BookService {
             return
         }
         
-        let task = URLSession.shared.dataTask(with: queryURL) { (data, respnose, error) in
+        let task = URLSession.shared.dataTask(with: queryURL) { (data, _, error) in
             guard let data = data else {
                 if let error = error {
                     print("Book query failed \(error)")
@@ -52,6 +54,27 @@ public struct BookService {
             } catch {
                 print("Error deserializing books json")
                 completion(.failure(.invalidJSONData))
+            }
+        }
+        
+        task.resume()
+    }
+    
+    public func fetchImage(url: URL, completion: @escaping (Result<UIImage, BookServiceError>) -> Void) {
+        let task = URLSession.shared.dataTask(with: url) { (data, _, error) in
+            guard let data = data else {
+                if let error = error {
+                    print("Image retrieval failed \(error)")
+                }
+                
+                completion(.failure(.imageRequestFailed))
+                return
+            }
+            
+            if let image = UIImage(data: data) {
+                completion(.success(image))
+            } else {
+                completion(.failure(.invalidImageData))
             }
         }
         

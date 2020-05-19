@@ -20,9 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         let bookService = BookService()
+        let bookManager = BookManager(bookService: bookService)
         if let navigationController = window?.rootViewController as? UINavigationController,
             let booksViewController = navigationController.topViewController as? BooksViewController {
-            booksViewController.bookService = bookService
+            booksViewController.bookManager = bookManager
         }
     }
 
