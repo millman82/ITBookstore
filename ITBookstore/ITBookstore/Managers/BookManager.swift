@@ -29,7 +29,28 @@ public class BookManager {
         }
     }
     
-    public func loadImage(book: Book, completion: @escaping (UIImage) -> Void) {
+    public func loadBookDetail(for book: Book, completion: @escaping () -> Void) {
+        if book.authors == nil {
+            bookService.fetchBookDetail(for: book) { (result) in
+                switch result {
+                case let .success(bookDetail):
+                    book.authors = bookDetail.authors
+                    book.desc = bookDetail.desc
+                    book.pages = bookDetail.pages
+                    book.publisher = bookDetail.publisher
+                    book.rating = bookDetail.rating
+                    
+                    DispatchQueue.main.async {
+                        completion()
+                    }
+                case let .failure(error):
+                    print("Book detail retrieval failed: \(error)")
+                }
+            }
+        }
+    }
+    
+    public func loadImage(for book: Book, completion: @escaping (UIImage) -> Void) {
         let placeholderImage = UIImage(systemName: "questionmark.square")!
         let grayPlaceholderImage = placeholderImage.withTintColor(.gray, renderingMode: .alwaysOriginal)
         

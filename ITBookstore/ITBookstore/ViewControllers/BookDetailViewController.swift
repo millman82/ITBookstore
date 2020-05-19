@@ -15,6 +15,11 @@ class BookDetailViewController: UIViewController {
     @IBOutlet weak var coverImage: UIImageView!
     @IBOutlet weak var bookTitle: UILabel!
     @IBOutlet weak var subtitle: UILabel!
+    @IBOutlet weak var bookDescription: UILabel!
+    @IBOutlet weak var authors: UILabel!
+    @IBOutlet weak var publisher: UILabel!
+    @IBOutlet weak var pages: UILabel!
+    @IBOutlet weak var year: UILabel!
     @IBOutlet weak var isbn: UILabel!
     @IBOutlet weak var price: UILabel!
     
@@ -24,8 +29,26 @@ class BookDetailViewController: UIViewController {
         navigationItem.title = book?.title
         
         if let bookManager = bookManager, let book = book {
-            bookManager.loadImage(book: book) { (image) in
+            bookManager.loadImage(for: book) { (image) in
                 self.coverImage.image = image
+            }
+            
+            bookManager.loadBookDetail(for: book) {
+                self.bookDescription.text = self.book?.desc
+                self.authors.text = self.book?.authors
+                self.publisher.text = self.book?.publisher
+                
+                if let pageCount = self.book?.pages {
+                    self.pages.text = String(describing: pageCount)
+                } else {
+                    self.pages.text = ""
+                }
+                
+                if let publishYear = self.book?.year {
+                    self.year.text = String(describing: publishYear)
+                } else {
+                    self.year.text = ""
+                }
             }
         }
         

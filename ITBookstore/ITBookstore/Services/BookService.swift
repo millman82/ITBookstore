@@ -9,6 +9,7 @@
 import UIKit
 
 public enum BookServiceError: Error {
+    case detailRequestFailed
     case imageRequestFailed
     case invalidJSONData
     case invalidImageData
@@ -75,6 +76,37 @@ public struct BookService {
                 completion(.success(image))
             } else {
                 completion(.failure(.invalidImageData))
+            }
+        }
+        
+        task.resume()
+    }
+    
+    public func fetchBookDetail(for book: Book, completion: @escaping (Result<Book, BookServiceError>) -> Void) {
+        let queryPath = "/books/\(book.isbn13)"
+        
+        guard let detailQueryURL = URL(string: "\(rootUrl)\(queryPath)") else {
+            completion(.failure(.detailRequestFailed))
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: detailQueryURL) { (data, _, error) in
+            guard let data = data else {
+                if let error = error {
+                    print("Book detail retrieval failed \(error)")
+                }
+                
+                completion(.failure(.detailRequestFailed))
+                return
+            }
+            
+            do {
+                let jsonDecoder = JSONDecoder()
+                let bookDetail = try jsonDecoder.decode(Book.self, from: data)
+                completion(.success(bookDetail))
+            } catch {
+                print("Error deserializing book json")
+                completion(.failure(.invalidJSONData))
             }
         }
         

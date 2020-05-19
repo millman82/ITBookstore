@@ -47,7 +47,7 @@ class BooksViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let book = self.dataSource.books[indexPath.row]
         
-        bookManager?.loadImage(book: book, completion: { (image) in
+        bookManager?.loadImage(for: book, completion: { (image) in
             cell.imageView?.image = image
         })
     }
